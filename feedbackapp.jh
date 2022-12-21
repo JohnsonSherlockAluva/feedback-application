@@ -1,0 +1,81 @@
+entity ApplicationUser {
+  firstname String 
+  lastname String
+  emailid String
+  phonenumber String
+  location String 
+  profilepic ImageBlob  
+  status Boolean
+}
+entity Designation {
+  designationName String 
+  discription TextBlob  
+  picture ImageBlob
+  status Boolean
+}
+entity FeedbackAbout {
+  feedbackabout String 
+  discription TextBlob  
+  picture ImageBlob
+  status Boolean
+}
+entity FeedbackRequest {
+  subject String 
+  discription TextBlob   
+  picture ImageBlob
+  status Boolean
+  startDate Instant
+  endDate Instant
+  createdBy Long
+}
+entity FeedbackResponse {
+  response String 
+  discription TextBlob 
+  picture ImageBlob
+  status Boolean
+}
+entity Groups {
+  groupName String 
+  discription TextBlob
+  picture ImageBlob
+  status Boolean
+}
+
+relationship ManyToMany {
+	FeedbackRequest{feedbackAboutUsers(id)} to ApplicationUser{feedbackRequest1}
+}
+relationship ManyToMany {
+	ApplicationUser{designation(id)} to Designation{applicationUser}
+}
+relationship ManyToMany {
+	Groups{applicationUser(id)} to ApplicationUser{groups}
+}
+relationship ManyToMany {
+	FeedbackRequest{feedbackAbout(id)} to FeedbackAbout{feedbackRequest}
+}
+relationship ManyToMany {
+	FeedbackRequest{feedbackResponse(id)} to FeedbackResponse{feedbackRequest}
+}
+
+relationship ManyToMany {
+	FeedbackRequest{feedbackToUsers(id)} to ApplicationUser{feedbackRequest}
+}
+relationship ManyToMany {
+	FeedbackResponse{applicationUser(id)} to ApplicationUser{feedbackResponse}
+}
+relationship ManyToMany {
+	FeedbackRequest{groups(id)} to Groups{feedbackRequest}
+}
+
+
+relationship OneToOne {
+  ApplicationUser{internalUser} to User
+}
+
+
+
+
+paginate ApplicationUser with pagination
+paginate Groups with pagination
+paginate FeedbackAbout with pagination
+paginate FeedbackRequest with pagination
