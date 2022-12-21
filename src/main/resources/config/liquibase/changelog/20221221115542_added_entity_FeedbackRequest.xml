@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity FeedbackRequest.
+    -->
+    <changeSet id="20221221115542-1" author="jhipster">
+        <createTable tableName="feedback_request">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="subject" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="discription" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="picture" type="${blobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="picture_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="start_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="end_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="feedback_request" columnName="start_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="feedback_request" columnName="end_date" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <changeSet id="20221221115542-1-relations" author="jhipster">
+
+        <createTable tableName="rel_feedback_request__feedback_about_users">
+            <column name="feedback_about_users_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="feedback_request_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="feedback_request_id, feedback_about_users_id" tableName="rel_feedback_request__feedback_about_users"/>
+
+        <createTable tableName="rel_feedback_request__feedback_about">
+            <column name="feedback_about_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="feedback_request_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="feedback_request_id, feedback_about_id" tableName="rel_feedback_request__feedback_about"/>
+
+        <createTable tableName="rel_feedback_request__feedback_response">
+            <column name="feedback_response_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="feedback_request_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="feedback_request_id, feedback_response_id" tableName="rel_feedback_request__feedback_response"/>
+
+        <createTable tableName="rel_feedback_request__feedback_to_users">
+            <column name="feedback_to_users_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="feedback_request_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="feedback_request_id, feedback_to_users_id" tableName="rel_feedback_request__feedback_to_users"/>
+
+        <createTable tableName="rel_feedback_request__groups">
+            <column name="groups_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="feedback_request_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="feedback_request_id, groups_id" tableName="rel_feedback_request__groups"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20221221115542-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/feedback_request.csv"
+                  separator=";"
+                  tableName="feedback_request"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="subject" type="string"/>
+            <column name="discription" type="clob"/>
+            <column name="picture" type="blob"/>
+            <column name="picture_content_type" type="string"/>
+            <column name="status" type="boolean"/>
+            <column name="start_date" type="date"/>
+            <column name="end_date" type="date"/>
+            <column name="created_by" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="feedbackAbout">
+      <h2 data-cy="feedbackAboutDetailsHeading"><span jhiTranslate="feedbackApp.feedbackAbout.detail.title">Feedback About</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ feedbackAbout.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackAbout.feedbackabout">Feedbackabout</span></dt>
+        <dd>
+          <span>{{ feedbackAbout.feedbackabout }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackAbout.discription">Discription</span></dt>
+        <dd>
+          <span>{{ feedbackAbout.discription }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackAbout.picture">Picture</span></dt>
+        <dd>
+          <div *ngIf="feedbackAbout.picture">
+            <a (click)="openFile(feedbackAbout.picture, feedbackAbout.pictureContentType)">
+              <img
+                [src]="'data:' + feedbackAbout.pictureContentType + ';base64,' + feedbackAbout.picture"
+                style="max-width: 100%"
+                alt="feedbackAbout image"
+              />
+            </a>
+            {{ feedbackAbout.pictureContentType }}, {{ byteSize(feedbackAbout.picture) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackAbout.status">Status</span></dt>
+        <dd>
+          <span>{{ feedbackAbout.status }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/feedback-about', feedbackAbout.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

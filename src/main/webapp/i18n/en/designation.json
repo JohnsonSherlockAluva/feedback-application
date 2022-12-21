@@ -1,0 +1,28 @@
+{
+  "feedbackApp": {
+    "designation": {
+      "home": {
+        "title": "Designations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Designation",
+        "createOrEditLabel": "Create or edit a Designation",
+        "notFound": "No Designations found"
+      },
+      "created": "A new Designation is created with identifier {{ param }}",
+      "updated": "A Designation is updated with identifier {{ param }}",
+      "deleted": "A Designation is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Designation {{ id }}?"
+      },
+      "detail": {
+        "title": "Designation"
+      },
+      "id": "ID",
+      "designationName": "Designation Name",
+      "discription": "Discription",
+      "picture": "Picture",
+      "status": "Status",
+      "applicationUser": "Application User"
+    }
+  }
+}

@@ -48,6 +48,28 @@ public class CacheConfiguration {
             createCache(cm, com.sandborn.feedback.domain.User.class.getName());
             createCache(cm, com.sandborn.feedback.domain.Authority.class.getName());
             createCache(cm, com.sandborn.feedback.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.sandborn.feedback.domain.ApplicationUser.class.getName());
+            createCache(cm, com.sandborn.feedback.domain.ApplicationUser.class.getName() + ".designations");
+            createCache(cm, com.sandborn.feedback.domain.ApplicationUser.class.getName() + ".feedbackRequest1s");
+            createCache(cm, com.sandborn.feedback.domain.ApplicationUser.class.getName() + ".groups");
+            createCache(cm, com.sandborn.feedback.domain.ApplicationUser.class.getName() + ".feedbackRequests");
+            createCache(cm, com.sandborn.feedback.domain.ApplicationUser.class.getName() + ".feedbackResponses");
+            createCache(cm, com.sandborn.feedback.domain.Designation.class.getName());
+            createCache(cm, com.sandborn.feedback.domain.Designation.class.getName() + ".applicationUsers");
+            createCache(cm, com.sandborn.feedback.domain.FeedbackAbout.class.getName());
+            createCache(cm, com.sandborn.feedback.domain.FeedbackAbout.class.getName() + ".feedbackRequests");
+            createCache(cm, com.sandborn.feedback.domain.FeedbackRequest.class.getName());
+            createCache(cm, com.sandborn.feedback.domain.FeedbackRequest.class.getName() + ".feedbackAboutUsers");
+            createCache(cm, com.sandborn.feedback.domain.FeedbackRequest.class.getName() + ".feedbackAbouts");
+            createCache(cm, com.sandborn.feedback.domain.FeedbackRequest.class.getName() + ".feedbackResponses");
+            createCache(cm, com.sandborn.feedback.domain.FeedbackRequest.class.getName() + ".feedbackToUsers");
+            createCache(cm, com.sandborn.feedback.domain.FeedbackRequest.class.getName() + ".groups");
+            createCache(cm, com.sandborn.feedback.domain.FeedbackResponse.class.getName());
+            createCache(cm, com.sandborn.feedback.domain.FeedbackResponse.class.getName() + ".applicationUsers");
+            createCache(cm, com.sandborn.feedback.domain.FeedbackResponse.class.getName() + ".feedbackRequests");
+            createCache(cm, com.sandborn.feedback.domain.Groups.class.getName());
+            createCache(cm, com.sandborn.feedback.domain.Groups.class.getName() + ".applicationUsers");
+            createCache(cm, com.sandborn.feedback.domain.Groups.class.getName() + ".feedbackRequests");
             // jhipster-needle-ehcache-add-entry
         };
     }

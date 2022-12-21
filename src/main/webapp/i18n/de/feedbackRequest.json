@@ -1,0 +1,35 @@
+{
+  "feedbackApp": {
+    "feedbackRequest": {
+      "home": {
+        "title": "Feedback Requests",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Feedback Request erstellen",
+        "createOrEditLabel": "Feedback Request erstellen oder bearbeiten",
+        "notFound": "Keine Feedback Requests gefunden"
+      },
+      "created": "Feedback Request erstellt mit ID {{ param }}",
+      "updated": "Feedback Request aktualisiert mit ID {{ param }}",
+      "deleted": "Feedback Request gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Feedback Request {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Feedback Request"
+      },
+      "id": "ID",
+      "subject": "Subject",
+      "discription": "Discription",
+      "picture": "Picture",
+      "status": "Status",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "createdBy": "Created By",
+      "feedbackAboutUsers": "Feedback About Users",
+      "feedbackAbout": "Feedback About",
+      "feedbackResponse": "Feedback Response",
+      "feedbackToUsers": "Feedback To Users",
+      "groups": "Groups"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity FeedbackRequest.
+    -->
+    <changeSet id="20221221115542-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="feedback_request_id"
+                                 baseTableName="rel_feedback_request__feedback_about_users"
+                                 constraintName="fk_rel_feedback_request__feedba__feedback_request_17_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feedback_request"/>
+
+        <addForeignKeyConstraint baseColumnNames="feedback_about_users_id"
+                                 baseTableName="rel_feedback_request__feedback_about_users"
+                                 constraintName="fk_rel_feedback_request__feedba__feedback_about_users_2b_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="application_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="feedback_request_id"
+                                 baseTableName="rel_feedback_request__feedback_about"
+                                 constraintName="fk_rel_feedback_request__feedback_about__feedback_request_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feedback_request"/>
+
+        <addForeignKeyConstraint baseColumnNames="feedback_about_id"
+                                 baseTableName="rel_feedback_request__feedback_about"
+                                 constraintName="fk_rel_feedback_request__feedback_about__feedback_about_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feedback_about"/>
+
+        <addForeignKeyConstraint baseColumnNames="feedback_request_id"
+                                 baseTableName="rel_feedback_request__feedback_response"
+                                 constraintName="fk_rel_feedback_request__feedba__feedback_request_ad_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feedback_request"/>
+
+        <addForeignKeyConstraint baseColumnNames="feedback_response_id"
+                                 baseTableName="rel_feedback_request__feedback_response"
+                                 constraintName="fk_rel_feedback_request__feedba__feedback_response_4c_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feedback_response"/>
+
+        <addForeignKeyConstraint baseColumnNames="feedback_request_id"
+                                 baseTableName="rel_feedback_request__feedback_to_users"
+                                 constraintName="fk_rel_feedback_request__feedba__feedback_request_6c_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feedback_request"/>
+
+        <addForeignKeyConstraint baseColumnNames="feedback_to_users_id"
+                                 baseTableName="rel_feedback_request__feedback_to_users"
+                                 constraintName="fk_rel_feedback_request__feedba__feedback_to_users_c1_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="application_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="feedback_request_id"
+                                 baseTableName="rel_feedback_request__groups"
+                                 constraintName="fk_rel_feedback_request__groups__feedback_request_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feedback_request"/>
+
+        <addForeignKeyConstraint baseColumnNames="groups_id"
+                                 baseTableName="rel_feedback_request__groups"
+                                 constraintName="fk_rel_feedback_request__groups__groups_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="groups"/>
+    </changeSet>
+</databaseChangeLog>

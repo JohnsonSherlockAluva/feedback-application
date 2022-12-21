@@ -1,0 +1,36 @@
+{
+  "feedbackApp": {
+    "applicationUser": {
+      "home": {
+        "title": "Application Users",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Application User erstellen",
+        "createOrEditLabel": "Application User erstellen oder bearbeiten",
+        "notFound": "Keine Application Users gefunden"
+      },
+      "created": "Application User erstellt mit ID {{ param }}",
+      "updated": "Application User aktualisiert mit ID {{ param }}",
+      "deleted": "Application User gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Application User {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Application User"
+      },
+      "id": "ID",
+      "firstname": "Firstname",
+      "lastname": "Lastname",
+      "emailid": "Emailid",
+      "phonenumber": "Phonenumber",
+      "location": "Location",
+      "profilepic": "Profilepic",
+      "status": "Status",
+      "internalUser": "Internal User",
+      "designation": "Designation",
+      "feedbackRequest1": "Feedback Request 1",
+      "groups": "Groups",
+      "feedbackRequest": "Feedback Request",
+      "feedbackResponse": "Feedback Response"
+    }
+  }
+}

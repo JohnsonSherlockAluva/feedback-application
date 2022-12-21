@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity FeedbackResponse.
+    -->
+    <changeSet id="20221221115543-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="feedback_response_id"
+                                 baseTableName="rel_feedback_response__application_user"
+                                 constraintName="fk_rel_feedback_response__appli__feedback_response_26_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="feedback_response"/>
+
+        <addForeignKeyConstraint baseColumnNames="application_user_id"
+                                 baseTableName="rel_feedback_response__application_user"
+                                 constraintName="fk_rel_feedback_response__appli__application_user_68_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="application_user"/>
+    </changeSet>
+</databaseChangeLog>

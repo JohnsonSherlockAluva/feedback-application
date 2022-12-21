@@ -1,0 +1,87 @@
+{
+  "applications": "*",
+  "changelogDate": "20221221115542",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "feedback_request",
+  "fields": [
+    {
+      "fieldName": "subject",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "discription",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "picture",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "Long"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "FeedbackRequest",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "feedbackRequest1",
+      "ownerSide": true,
+      "relationshipName": "feedbackAboutUsers",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "feedbackAbout",
+      "otherEntityRelationshipName": "feedbackRequest",
+      "ownerSide": true,
+      "relationshipName": "feedbackAbout",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "feedbackResponse",
+      "otherEntityRelationshipName": "feedbackRequest",
+      "ownerSide": true,
+      "relationshipName": "feedbackResponse",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "feedbackRequest",
+      "ownerSide": true,
+      "relationshipName": "feedbackToUsers",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "groups",
+      "otherEntityRelationshipName": "feedbackRequest",
+      "ownerSide": true,
+      "relationshipName": "groups",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

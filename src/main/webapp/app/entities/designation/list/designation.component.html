@@ -1,0 +1,118 @@
+<div>
+  <h2 id="page-heading" data-cy="DesignationHeading">
+    <span jhiTranslate="feedbackApp.designation.home.title">Designations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="feedbackApp.designation.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-designation"
+        [routerLink]="['/designation/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="feedbackApp.designation.home.createLabel"> Create a new Designation </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="designations?.length === 0">
+    <span jhiTranslate="feedbackApp.designation.home.notFound">No Designations found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="designations && designations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="designationName">
+            <div class="d-flex">
+              <span jhiTranslate="feedbackApp.designation.designationName">Designation Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="discription">
+            <div class="d-flex">
+              <span jhiTranslate="feedbackApp.designation.discription">Discription</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="picture">
+            <div class="d-flex">
+              <span jhiTranslate="feedbackApp.designation.picture">Picture</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span jhiTranslate="feedbackApp.designation.status">Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let designation of designations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/designation', designation.id, 'view']">{{ designation.id }}</a>
+          </td>
+          <td>{{ designation.designationName }}</td>
+          <td>{{ designation.discription }}</td>
+          <td>
+            <a *ngIf="designation.picture" (click)="openFile(designation.picture, designation.pictureContentType)">
+              <img
+                [src]="'data:' + designation.pictureContentType + ';base64,' + designation.picture"
+                style="max-height: 30px"
+                alt="designation image"
+              />
+            </a>
+            <span *ngIf="designation.picture">{{ designation.pictureContentType }}, {{ byteSize(designation.picture) }}</span>
+          </td>
+          <td>{{ designation.status }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/designation', designation.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/designation', designation.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(designation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
