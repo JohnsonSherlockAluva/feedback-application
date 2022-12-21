@@ -1,0 +1,28 @@
+{
+  "feedbackApp": {
+    "feedbackAbout": {
+      "home": {
+        "title": "Feedback Abouts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Feedback About",
+        "createOrEditLabel": "Create or edit a Feedback About",
+        "notFound": "No Feedback Abouts found"
+      },
+      "created": "A new Feedback About is created with identifier {{ param }}",
+      "updated": "A Feedback About is updated with identifier {{ param }}",
+      "deleted": "A Feedback About is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Feedback About {{ id }}?"
+      },
+      "detail": {
+        "title": "Feedback About"
+      },
+      "id": "ID",
+      "feedbackabout": "Feedbackabout",
+      "discription": "Discription",
+      "picture": "Picture",
+      "status": "Status",
+      "feedbackRequest": "Feedback Request"
+    }
+  }
+}

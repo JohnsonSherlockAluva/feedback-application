@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="feedbackResponse">
+      <h2 data-cy="feedbackResponseDetailsHeading">
+        <span jhiTranslate="feedbackApp.feedbackResponse.detail.title">Feedback Response</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ feedbackResponse.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackResponse.response">Response</span></dt>
+        <dd>
+          <span>{{ feedbackResponse.response }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackResponse.discription">Discription</span></dt>
+        <dd>
+          <span>{{ feedbackResponse.discription }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackResponse.picture">Picture</span></dt>
+        <dd>
+          <div *ngIf="feedbackResponse.picture">
+            <a (click)="openFile(feedbackResponse.picture, feedbackResponse.pictureContentType)">
+              <img
+                [src]="'data:' + feedbackResponse.pictureContentType + ';base64,' + feedbackResponse.picture"
+                style="max-width: 100%"
+                alt="feedbackResponse image"
+              />
+            </a>
+            {{ feedbackResponse.pictureContentType }}, {{ byteSize(feedbackResponse.picture) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackResponse.status">Status</span></dt>
+        <dd>
+          <span>{{ feedbackResponse.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackResponse.applicationUser">Application User</span></dt>
+        <dd>
+          <span *ngFor="let applicationUser of feedbackResponse.applicationUsers; let last = last">
+            <a [routerLink]="['/application-user', applicationUser.id, 'view']">{{ applicationUser.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/feedback-response', feedbackResponse.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

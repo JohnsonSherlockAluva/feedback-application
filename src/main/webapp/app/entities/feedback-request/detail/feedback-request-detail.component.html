@@ -1,0 +1,100 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="feedbackRequest">
+      <h2 data-cy="feedbackRequestDetailsHeading"><span jhiTranslate="feedbackApp.feedbackRequest.detail.title">Feedback Request</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ feedbackRequest.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.subject">Subject</span></dt>
+        <dd>
+          <span>{{ feedbackRequest.subject }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.discription">Discription</span></dt>
+        <dd>
+          <span>{{ feedbackRequest.discription }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.picture">Picture</span></dt>
+        <dd>
+          <div *ngIf="feedbackRequest.picture">
+            <a (click)="openFile(feedbackRequest.picture, feedbackRequest.pictureContentType)">
+              <img
+                [src]="'data:' + feedbackRequest.pictureContentType + ';base64,' + feedbackRequest.picture"
+                style="max-width: 100%"
+                alt="feedbackRequest image"
+              />
+            </a>
+            {{ feedbackRequest.pictureContentType }}, {{ byteSize(feedbackRequest.picture) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.status">Status</span></dt>
+        <dd>
+          <span>{{ feedbackRequest.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.startDate">Start Date</span></dt>
+        <dd>
+          <span>{{ feedbackRequest.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.endDate">End Date</span></dt>
+        <dd>
+          <span>{{ feedbackRequest.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ feedbackRequest.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.feedbackAboutUsers">Feedback About Users</span></dt>
+        <dd>
+          <span *ngFor="let feedbackAboutUsers of feedbackRequest.feedbackAboutUsers; let last = last">
+            <a [routerLink]="['/application-user', feedbackAboutUsers.id, 'view']">{{ feedbackAboutUsers.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.feedbackAbout">Feedback About</span></dt>
+        <dd>
+          <span *ngFor="let feedbackAbout of feedbackRequest.feedbackAbouts; let last = last">
+            <a [routerLink]="['/feedback-about', feedbackAbout.id, 'view']">{{ feedbackAbout.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.feedbackResponse">Feedback Response</span></dt>
+        <dd>
+          <span *ngFor="let feedbackResponse of feedbackRequest.feedbackResponses; let last = last">
+            <a [routerLink]="['/feedback-response', feedbackResponse.id, 'view']">{{ feedbackResponse.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.feedbackToUsers">Feedback To Users</span></dt>
+        <dd>
+          <span *ngFor="let feedbackToUsers of feedbackRequest.feedbackToUsers; let last = last">
+            <a [routerLink]="['/application-user', feedbackToUsers.id, 'view']">{{ feedbackToUsers.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.feedbackRequest.groups">Groups</span></dt>
+        <dd>
+          <span *ngFor="let groups of feedbackRequest.groups; let last = last">
+            <a [routerLink]="['/groups', groups.id, 'view']">{{ groups.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/feedback-request', feedbackRequest.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

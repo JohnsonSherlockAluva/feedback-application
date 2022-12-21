@@ -1,0 +1,217 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-feedback-request-heading"
+        data-cy="FeedbackRequestCreateUpdateHeading"
+        jhiTranslate="feedbackApp.feedbackRequest.home.createOrEditLabel"
+      >
+        Create or edit a Feedback Request
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.feedbackRequest.subject" for="field_subject">Subject</label>
+          <input type="text" class="form-control" name="subject" id="field_subject" data-cy="subject" formControlName="subject" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.feedbackRequest.discription" for="field_discription">Discription</label>
+          <textarea
+            class="form-control"
+            name="discription"
+            id="field_discription"
+            data-cy="discription"
+            formControlName="discription"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.feedbackRequest.picture" for="field_picture">Picture</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('pictureContentType')!.value + ';base64,' + editForm.get('picture')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('picture')!.value"
+              alt="feedbackRequest image"
+            />
+            <div *ngIf="editForm.get('picture')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('pictureContentType')!.value }}, {{ byteSize(editForm.get('picture')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('picture', 'pictureContentType', 'file_picture')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_picture"
+              data-cy="picture"
+              (change)="setFileData($event, 'picture', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="picture" id="field_picture" data-cy="picture" formControlName="picture" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="pictureContentType"
+            id="field_pictureContentType"
+            formControlName="pictureContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.feedbackRequest.status" for="field_status">Status</label>
+          <input type="checkbox" class="form-check" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.feedbackRequest.startDate" for="field_startDate">Start Date</label>
+          <div class="d-flex">
+            <input
+              id="field_startDate"
+              data-cy="startDate"
+              type="datetime-local"
+              class="form-control"
+              name="startDate"
+              formControlName="startDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.feedbackRequest.endDate" for="field_endDate">End Date</label>
+          <div class="d-flex">
+            <input
+              id="field_endDate"
+              data-cy="endDate"
+              type="datetime-local"
+              class="form-control"
+              name="endDate"
+              formControlName="endDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.feedbackRequest.createdBy" for="field_createdBy">Created By</label>
+          <input type="number" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="feedbackApp.feedbackRequest.feedbackAboutUsers" for="field_feedbackAboutUsers">Feedback About Users</label>
+          <select
+            class="form-control"
+            id="field_feedbackAboutUsers"
+            data-cy="feedbackAboutUsers"
+            multiple
+            name="feedbackAboutUsers"
+            formControlName="feedbackAboutUsers"
+            [compareWith]="compareApplicationUser"
+          >
+            <option [ngValue]="applicationUserOption" *ngFor="let applicationUserOption of applicationUsersSharedCollection">
+              {{ applicationUserOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="feedbackApp.feedbackRequest.feedbackAbout" for="field_feedbackAbouts">Feedback About</label>
+          <select
+            class="form-control"
+            id="field_feedbackAbouts"
+            data-cy="feedbackAbout"
+            multiple
+            name="feedbackAbouts"
+            formControlName="feedbackAbouts"
+            [compareWith]="compareFeedbackAbout"
+          >
+            <option [ngValue]="feedbackAboutOption" *ngFor="let feedbackAboutOption of feedbackAboutsSharedCollection">
+              {{ feedbackAboutOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="feedbackApp.feedbackRequest.feedbackResponse" for="field_feedbackResponses">Feedback Response</label>
+          <select
+            class="form-control"
+            id="field_feedbackResponses"
+            data-cy="feedbackResponse"
+            multiple
+            name="feedbackResponses"
+            formControlName="feedbackResponses"
+            [compareWith]="compareFeedbackResponse"
+          >
+            <option [ngValue]="feedbackResponseOption" *ngFor="let feedbackResponseOption of feedbackResponsesSharedCollection">
+              {{ feedbackResponseOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="feedbackApp.feedbackRequest.feedbackToUsers" for="field_feedbackToUsers">Feedback To Users</label>
+          <select
+            class="form-control"
+            id="field_feedbackToUsers"
+            data-cy="feedbackToUsers"
+            multiple
+            name="feedbackToUsers"
+            formControlName="feedbackToUsers"
+            [compareWith]="compareApplicationUser"
+          >
+            <option [ngValue]="applicationUserOption" *ngFor="let applicationUserOption of applicationUsersSharedCollection">
+              {{ applicationUserOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="feedbackApp.feedbackRequest.groups" for="field_groups">Groups</label>
+          <select
+            class="form-control"
+            id="field_groups"
+            data-cy="groups"
+            multiple
+            name="groups"
+            formControlName="groups"
+            [compareWith]="compareGroups"
+          >
+            <option [ngValue]="groupsOption" *ngFor="let groupsOption of groupsSharedCollection">{{ groupsOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

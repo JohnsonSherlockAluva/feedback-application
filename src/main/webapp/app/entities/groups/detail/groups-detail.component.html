@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="groups">
+      <h2 data-cy="groupsDetailsHeading"><span jhiTranslate="feedbackApp.groups.detail.title">Groups</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ groups.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.groups.groupName">Group Name</span></dt>
+        <dd>
+          <span>{{ groups.groupName }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.groups.discription">Discription</span></dt>
+        <dd>
+          <span>{{ groups.discription }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.groups.picture">Picture</span></dt>
+        <dd>
+          <div *ngIf="groups.picture">
+            <a (click)="openFile(groups.picture, groups.pictureContentType)">
+              <img [src]="'data:' + groups.pictureContentType + ';base64,' + groups.picture" style="max-width: 100%" alt="groups image" />
+            </a>
+            {{ groups.pictureContentType }}, {{ byteSize(groups.picture) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.groups.status">Status</span></dt>
+        <dd>
+          <span>{{ groups.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.groups.applicationUser">Application User</span></dt>
+        <dd>
+          <span *ngFor="let applicationUser of groups.applicationUsers; let last = last">
+            <a [routerLink]="['/application-user', applicationUser.id, 'view']">{{ applicationUser.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/groups', groups.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

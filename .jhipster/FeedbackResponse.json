@@ -1,0 +1,50 @@
+{
+  "applications": "*",
+  "changelogDate": "20221221115543",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "feedback_response",
+  "fields": [
+    {
+      "fieldName": "response",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "discription",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "picture",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "FeedbackResponse",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "feedbackResponse",
+      "ownerSide": true,
+      "relationshipName": "applicationUser",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "feedbackRequest",
+      "otherEntityRelationshipName": "feedbackResponse",
+      "ownerSide": false,
+      "relationshipName": "feedbackRequest",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

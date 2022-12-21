@@ -1,0 +1,29 @@
+{
+  "feedbackApp": {
+    "feedbackResponse": {
+      "home": {
+        "title": "Feedback Responses",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Feedback Response erstellen",
+        "createOrEditLabel": "Feedback Response erstellen oder bearbeiten",
+        "notFound": "Keine Feedback Responses gefunden"
+      },
+      "created": "Feedback Response erstellt mit ID {{ param }}",
+      "updated": "Feedback Response aktualisiert mit ID {{ param }}",
+      "deleted": "Feedback Response gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Feedback Response {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Feedback Response"
+      },
+      "id": "ID",
+      "response": "Response",
+      "discription": "Discription",
+      "picture": "Picture",
+      "status": "Status",
+      "applicationUser": "Application User",
+      "feedbackRequest": "Feedback Request"
+    }
+  }
+}

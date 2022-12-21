@@ -1,0 +1,50 @@
+{
+  "applications": "*",
+  "changelogDate": "20221221115544",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "groups",
+  "fields": [
+    {
+      "fieldName": "groupName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "discription",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "picture",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Groups",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "applicationUser",
+      "otherEntityRelationshipName": "groups",
+      "ownerSide": true,
+      "relationshipName": "applicationUser",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "feedbackRequest",
+      "otherEntityRelationshipName": "groups",
+      "ownerSide": false,
+      "relationshipName": "feedbackRequest",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

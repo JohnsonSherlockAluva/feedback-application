@@ -1,0 +1,29 @@
+{
+  "feedbackApp": {
+    "groups": {
+      "home": {
+        "title": "Groups",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Groups erstellen",
+        "createOrEditLabel": "Groups erstellen oder bearbeiten",
+        "notFound": "Keine Groups gefunden"
+      },
+      "created": "Groups erstellt mit ID {{ param }}",
+      "updated": "Groups aktualisiert mit ID {{ param }}",
+      "deleted": "Groups gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Groups {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Groups"
+      },
+      "id": "ID",
+      "groupName": "Group Name",
+      "discription": "Discription",
+      "picture": "Picture",
+      "status": "Status",
+      "applicationUser": "Application User",
+      "feedbackRequest": "Feedback Request"
+    }
+  }
+}

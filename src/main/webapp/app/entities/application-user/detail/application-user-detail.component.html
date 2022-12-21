@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="applicationUser">
+      <h2 data-cy="applicationUserDetailsHeading"><span jhiTranslate="feedbackApp.applicationUser.detail.title">Application User</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ applicationUser.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.applicationUser.firstname">Firstname</span></dt>
+        <dd>
+          <span>{{ applicationUser.firstname }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.applicationUser.lastname">Lastname</span></dt>
+        <dd>
+          <span>{{ applicationUser.lastname }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.applicationUser.emailid">Emailid</span></dt>
+        <dd>
+          <span>{{ applicationUser.emailid }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.applicationUser.phonenumber">Phonenumber</span></dt>
+        <dd>
+          <span>{{ applicationUser.phonenumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.applicationUser.location">Location</span></dt>
+        <dd>
+          <span>{{ applicationUser.location }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.applicationUser.profilepic">Profilepic</span></dt>
+        <dd>
+          <div *ngIf="applicationUser.profilepic">
+            <a (click)="openFile(applicationUser.profilepic, applicationUser.profilepicContentType)">
+              <img
+                [src]="'data:' + applicationUser.profilepicContentType + ';base64,' + applicationUser.profilepic"
+                style="max-width: 100%"
+                alt="applicationUser image"
+              />
+            </a>
+            {{ applicationUser.profilepicContentType }}, {{ byteSize(applicationUser.profilepic) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.applicationUser.status">Status</span></dt>
+        <dd>
+          <span>{{ applicationUser.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.applicationUser.internalUser">Internal User</span></dt>
+        <dd>
+          <span>{{ applicationUser.internalUser?.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="feedbackApp.applicationUser.designation">Designation</span></dt>
+        <dd>
+          <span *ngFor="let designation of applicationUser.designations; let last = last">
+            <a [routerLink]="['/designation', designation.id, 'view']">{{ designation.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/application-user', applicationUser.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

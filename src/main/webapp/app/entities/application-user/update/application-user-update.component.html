@@ -1,0 +1,154 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-application-user-heading"
+        data-cy="ApplicationUserCreateUpdateHeading"
+        jhiTranslate="feedbackApp.applicationUser.home.createOrEditLabel"
+      >
+        Create or edit a Application User
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.applicationUser.firstname" for="field_firstname">Firstname</label>
+          <input type="text" class="form-control" name="firstname" id="field_firstname" data-cy="firstname" formControlName="firstname" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.applicationUser.lastname" for="field_lastname">Lastname</label>
+          <input type="text" class="form-control" name="lastname" id="field_lastname" data-cy="lastname" formControlName="lastname" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.applicationUser.emailid" for="field_emailid">Emailid</label>
+          <input type="text" class="form-control" name="emailid" id="field_emailid" data-cy="emailid" formControlName="emailid" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.applicationUser.phonenumber" for="field_phonenumber">Phonenumber</label>
+          <input
+            type="text"
+            class="form-control"
+            name="phonenumber"
+            id="field_phonenumber"
+            data-cy="phonenumber"
+            formControlName="phonenumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.applicationUser.location" for="field_location">Location</label>
+          <input type="text" class="form-control" name="location" id="field_location" data-cy="location" formControlName="location" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.applicationUser.profilepic" for="field_profilepic">Profilepic</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('profilepicContentType')!.value + ';base64,' + editForm.get('profilepic')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('profilepic')!.value"
+              alt="applicationUser image"
+            />
+            <div *ngIf="editForm.get('profilepic')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('profilepicContentType')!.value }}, {{ byteSize(editForm.get('profilepic')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('profilepic', 'profilepicContentType', 'file_profilepic')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_profilepic"
+              data-cy="profilepic"
+              (change)="setFileData($event, 'profilepic', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="profilepic"
+            id="field_profilepic"
+            data-cy="profilepic"
+            formControlName="profilepic"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="profilepicContentType"
+            id="field_profilepicContentType"
+            formControlName="profilepicContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.applicationUser.status" for="field_status">Status</label>
+          <input type="checkbox" class="form-check" name="status" id="field_status" data-cy="status" formControlName="status" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="feedbackApp.applicationUser.internalUser" for="field_internalUser">Internal User</label>
+          <select
+            class="form-control"
+            id="field_internalUser"
+            data-cy="internalUser"
+            name="internalUser"
+            formControlName="internalUser"
+            [compareWith]="compareUser"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="userOption" *ngFor="let userOption of usersSharedCollection">{{ userOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="feedbackApp.applicationUser.designation" for="field_designations">Designation</label>
+          <select
+            class="form-control"
+            id="field_designations"
+            data-cy="designation"
+            multiple
+            name="designations"
+            formControlName="designations"
+            [compareWith]="compareDesignation"
+          >
+            <option [ngValue]="designationOption" *ngFor="let designationOption of designationsSharedCollection">
+              {{ designationOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
